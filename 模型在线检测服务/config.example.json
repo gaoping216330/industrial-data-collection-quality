@@ -1,0 +1,19 @@
+{
+  "database": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "replace_me",
+    "password": "",
+    "database": "gpwinccoa"
+  },
+  "mqtt": {
+    "broker": "127.0.0.1",
+    "port": 1883,
+    "username": "",
+    "password": "",
+    "topics": []
+  },
+  "paths": {},
+  "detection": {},
+  "logging": {}
+}

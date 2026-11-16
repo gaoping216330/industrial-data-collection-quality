@@ -1,0 +1,32 @@
+{
+  "database": {
+    "host": "127.0.0.1",
+    "port": 3307,
+    "user": "replace_me",
+    "password": "",
+    "database": "gpwinccoa"
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "db": 0,
+    "decode_responses": true,
+    "socket_connect_timeout": 2,
+    "socket_timeout": 3
+  },
+  "application": {
+    "host": "127.0.0.1",
+    "port": 8788,
+    "allowed_oa_ips": [
+      "127.0.0.1"
+    ],
+    "max_batch": 1000
+  },
+  "history_minutes": 180,
+  "catalog_refresh_seconds": 600,
+  "mqtt_enabled": false,
+  "mqtt_config_path": "模型在线检测服务/config.json",
+  "mqtt_intake": {},
+  "history_interval_seconds": 5,
+  "disk_buffer_enabled": false
+}

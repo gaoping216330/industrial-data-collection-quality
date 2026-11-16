@@ -1,0 +1,7 @@
+numpy>=2.0
+pandas>=2.2
+scikit-learn>=1.5
+joblib>=1.4
+pyarrow>=18.0
+PyMySQL>=1.1
+paho-mqtt>=2.0

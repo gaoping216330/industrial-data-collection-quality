@@ -1,0 +1,45 @@
+const {chromium}=require('C:/Users/Administrator.WIN-0E92A0S5DMC/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+ try{
+ const page=await browser.newPage({viewport:{width:1440,height:1100}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:8789/',{waitUntil:'domcontentloaded'});
+ const result=await page.request.get('http://127.0.0.1:8789/api/points'+(process.env.TEST_MUTED_EID?'?search='+encodeURIComponent(process.env.TEST_MUTED_EID):''));const points=await result.json();
+ const eid=(points.items.find(x=>x.value_text!==''&&Number.isFinite(Number(x.value_text)))||points.items[0]).eid;
+ await page.evaluate(eid=>openDetail(eid),eid);
+ if(process.env.TEST_MUTED_EID)assert.match(await page.locator('#detail-body').innerText(),/报警已屏蔽/);
+ await page.locator('.industrial-chart').waitFor();await page.locator('#trend').scrollIntoViewIfNeeded();
+ const canvas=page.locator('#trend');const box=await canvas.boundingBox();
+ await page.mouse.click(box.x+box.width*0.5,box.y+130);
+ assert.match(await page.locator('.trend-rulers').innerText(),/值/);
+ await page.locator('[data-tool="ruler"]').selectOption('B');
+ await page.mouse.click(box.x+box.width*0.75,box.y+150);
+ assert.match(await page.locator('.trend-rulers').innerText(),/Δ时间/);
+ const before=await page.evaluate(()=>{const c=document.getElementById('trend')._industrialTrend;return c.range[1]-c.range[0]});
+ await page.locator('[data-action="in"]').click();
+ const after=await page.evaluate(()=>{const c=document.getElementById('trend')._industrialTrend;return c.range[1]-c.range[0]});
+ assert.ok(after<before);assert.equal(await page.locator('.trend-navigator input').isDisabled(),false);
+ await page.locator('[data-action="right"]').click();
+ await page.locator('[data-tool="mode"]').selectOption('box');
+ const box2=await canvas.boundingBox();await page.mouse.move(box2.x+180,box2.y+80);await page.mouse.down();await page.mouse.move(box2.x+460,box2.y+180,{steps:8});await page.mouse.up();
+ const selected=await page.evaluate(()=>{const c=document.getElementById('trend')._industrialTrend;return c.range[1]-c.range[0]});assert.ok(selected<after);
+ await page.locator('[data-action="reset"]').click();
+ await page.locator('#trend-mode').selectOption('history');await page.locator('#history-granularity').selectOption('second');
+ const times=await page.evaluate(()=>{const now=new Date();return [localInputTime(new Date(now-2*3600000)),localInputTime(now)]});
+ await page.locator('#history-begin').fill(times[0]);await page.locator('#history-end').fill(times[1]);await page.locator('#history-query').click();
+ await page.waitForFunction(()=>!document.getElementById('history-query').disabled,{timeout:80000});
+ const feedback=await page.locator('#trend-feedback').innerText();assert.ok(!feedback.includes('查询失败'),feedback);
+ await page.locator('[data-action="focus"]').click();
+ const expanded=await canvas.boundingBox();
+ await page.locator('[data-tool="mode"]').selectOption('cursor');
+ await page.locator('[data-tool="ruler"]').selectOption('A');await page.mouse.click(expanded.x+expanded.width*0.4,expanded.y+100);
+ await page.locator('[data-tool="ruler"]').selectOption('B');await page.mouse.click(expanded.x+expanded.width*0.7,expanded.y+160);
+ assert.match(await page.locator('.trend-rulers').innerText(),/Δ时间/);
+ assert.equal(await page.locator('#detail').evaluate(e=>e.classList.contains('trend-expanded')),true);
+ await page.screenshot({path:'监测平台/logs/interactive-trend.png',fullPage:false});
+ assert.deepEqual(errors,[]);
+ console.log(JSON.stringify({eid,zoomVerified:true,twoRulersVerified:true,boxZoomVerified:true,feedback,errors}));
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

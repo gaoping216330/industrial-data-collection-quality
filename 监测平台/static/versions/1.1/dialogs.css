@@ -1,0 +1,40 @@
+/* Modal headings stay outside the scrollable data area. */
+dialog[open]{display:flex;flex-direction:column;height:min(90vh,900px);max-height:90vh;overflow:hidden;background:#f4f8fb}
+dialog .dialog-head{flex:0 0 auto;background:linear-gradient(110deg,#edf5fb,#f5fbfc);border-bottom:1px solid #b9d1df;padding:20px 24px;gap:16px}
+dialog .dialog-head h2{font-size:22px;line-height:1.4;color:#173b50}
+dialog .dialog-head .eyebrow{font-size:11px;color:#168b88}
+dialog .icon-button{width:36px;height:36px;border-color:#b9d0dc;font-size:22px;flex-shrink:0}
+dialog .text-button{font-size:14px;font-weight:650}
+#anomaly-body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding:18px 22px 0}
+#anomaly-body>.drill-summary{flex:0 0 auto;font-size:14px;line-height:1.6;color:#355b70;background:#e6f1f7;border:1px solid #c4dce8;border-radius:8px;padding:11px 14px;margin:0 0 14px}
+#anomaly-body>.detail-grid{flex:0 0 auto;max-height:24vh;overflow:auto;margin-bottom:12px}
+#anomaly-body>.table-scroll{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;background:#fff;border:1px solid #b8cdd9;border-radius:8px 8px 0 0}
+#anomaly-body>.pager{flex:0 0 auto;font-size:14px;padding:14px 2px;background:#f4f8fb}
+#anomaly-body>.pager button{font-size:14px;padding:7px 13px;border-color:#b9cfdb}
+#detail-body{flex:1 1 auto;min-height:0;overflow:auto;padding:20px 24px;overscroll-behavior:contain}
+#detail-body .table-scroll{max-height:360px;overflow:auto;border:1px solid #b8cdd9;border-radius:8px}
+dialog table{font-size:15px;line-height:1.55;border-collapse:separate;border-spacing:0;background:#fff}
+#anomaly-dialog .table-scroll table{min-width:1150px}
+dialog th{position:sticky;top:0;z-index:2;font-size:15px;font-weight:750;color:#234a63;background:linear-gradient(#d7e8f2,#e4f1f5);padding:14px 16px;border-bottom:2px solid #87b3c8;border-right:1px solid #b8d0dd;box-shadow:0 2px 3px #163b5010}
+dialog td{font-size:15px;padding:13px 16px;color:#2e4b5e;border-top:0;border-bottom:1px solid #bdcfdc;border-right:1px solid #d9e3eb}
+dialog th:last-child,dialog td:last-child{border-right:0}
+dialog tbody tr:nth-child(odd) td{background:#fff}
+dialog tbody tr:nth-child(even) td{background:#f0f6fa}
+dialog tbody tr:hover td{background:#e1f1f5}
+dialog .table-link{font-size:15px;font-weight:600}
+dialog .reason-tags span,dialog .badge{font-size:13px}
+dialog .detail-grid>div{border:1px solid #cbdde7;background:#fff;padding:12px}
+dialog .detail-grid small{font-size:13px;font-weight:700;color:#4d6b7d}
+dialog .detail-grid b{font-size:15px;color:#233f52}
+dialog .section-title{font-size:16px}
+@media(max-width:720px){
+  dialog[open]{height:94vh;max-height:94vh}
+  dialog .dialog-head{padding:14px 16px}
+  dialog .dialog-head h2{font-size:18px}
+  #anomaly-body{padding:12px 10px 0}
+  #anomaly-body>.drill-summary{font-size:13px;padding:8px 10px;margin-bottom:10px}
+  dialog td,dialog th{padding:11px 12px;font-size:14px}
+}
+
+/* Include source names in reason labels. */
+.bar-row{grid-template-columns:minmax(150px,190px) minmax(0,1fr) 45px}

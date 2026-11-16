@@ -1,0 +1,7 @@
+__pycache__/
+backups/
+*.log
+*.log.*
+*.pid
+status.json
+status.tmp

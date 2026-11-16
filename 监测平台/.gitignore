@@ -1,0 +1,11 @@
+logs/
+*.pid
+.deps/
+.python312/
+__pycache__/
+
+publication.json
+publication.tmp
+
+admin_credentials.json
+管理员初始登录.txt

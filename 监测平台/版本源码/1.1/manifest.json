@@ -1,0 +1,29 @@
+{
+  "version": "1.1",
+  "frontend": "监测平台\\static\\versions\\1.1",
+  "backend_snapshot": "监测平台\\版本源码\\1.1\\backend",
+  "shared_runtime_backend": true,
+  "files": {
+    "admin-export.js": "709420ad3e03eade5d2c15f58c47330c9777cbfefe413b2391c49d9898365497",
+    "admin-users.js": "702fd318345d683d4c6e837b1a106bc2c92a785b52d1a5a8ffd373b453a2f3a0",
+    "app.js": "aab10e1f27c77fe104b3323a64d09801ab19f099cb0234297edbc89dfcb224af",
+    "collection-health.js": "03c757c3577cd394fd510bb6ef4e5dd25d162f544fb2274fe3812b0f88ff48cd",
+    "database-location.js": "c9d11d941f6986f70e503aa40988793fb0df6aab1ff7c5b5eaa21683568083d0",
+    "device-manual-reason.js": "7040ef2c0009704b94e4418e8b2035c3ade9b92c3734709238fb81d95550a5bb",
+    "dialogs.css": "75a79ddc88da39df5e68ba3888a9e395c528a6876aecd77bae001845310ad90d",
+    "drilldown.js": "09563b4ec786e392e4a4b6868a6fdba22e7e9f3a5ef00b9b1bda283aa471ffbb",
+    "filter-controls.js": "50863912cc06468689f410ceb888b115300bc1fdc873beed8c390c5da4fa2062",
+    "flatline-settings.js": "63f8099050ffa6cd65bc26e94d92556792bd8de8864103c2a42d21bc3f761373",
+    "important-logs.js": "7b2c22283aea75a9bfa657f3c0bd0d1fb602796b4ac3c64bd4d47c19686d1024",
+    "index.html": "d2fc2249f025ae551e0e6c74313921797dabadecfe77a8c01a5f26d61e109732",
+    "industrial-trend.js": "1cf53849a7be7e1db587e19afd7c38e7f832e4a9a9b094eee84962fd9a026e77",
+    "model-training.js": "d7f559fb9c2c9614f9b923617cf1b348390e898a5d53c092bede0d267584e8de",
+    "mqtt-duplicates.js": "956bf030d903ea25f5a3d20f16635f02a34c7c3fb0f239f70efb13f76508828d",
+    "overview-events.js": "84b70a629cbbce60c4077a6a64f096442df8e22b2a6f165fa901712caed076a4",
+    "overview-v11.js": "1735cb07320c0562101752e22cc4267a027a7653c9d253d9d89d3b6ca59eb4a5",
+    "rule-configuration.js": "12f399944b35218fa23429e40a7177be131395fea0af3fcdb84d89e799d31dbc",
+    "stopped-analysis.js": "8c24c08482ac3347e426e441921a3959ee8bc62b418f3e9aa184447b451cacdc",
+    "style.css": "99b78d03daade20138b0b28bdda899d1df4c8224276ca5114137fd40eae98097",
+    "version-switch.js": "9c5fe976ed73e24f45f32f82f381efa5549485506eba0ccbf8acac8becd8f9ec"
+  }
+}
